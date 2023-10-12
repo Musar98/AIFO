@@ -21,8 +21,7 @@ class RootConfig:
         self.input_entry = tkinter.Entry(input_frame, bg="darkgrey", highlightcolor='grey')
         self.input_entry.pack(side=tkinter.LEFT, fill=tkinter.X, expand=True)
 
-        send_button = tkinter.Button(input_frame, text="Send", background="darkgrey",
-                                     command=self.send_message)
+        send_button = tkinter.Button(input_frame, text="Send", command=self.send_message)
         send_button.pack(side=tkinter.RIGHT)
 
         self.input_entry.bind("<Return>", self.send_message)
@@ -32,9 +31,12 @@ class RootConfig:
         if message:
             self.chat_display.config(state=tkinter.NORMAL)
             current_text = self.chat_display.get(1.0, tkinter.END)
-            updated_text = "You: " + message + "\n" + current_text
+            if current_text.strip():
+                updated_text = current_text + "You: " + message
+            else:
+                updated_text = "You: " + message
             self.chat_display.delete(1.0, tkinter.END)
-            self.chat_display.insert(tkinter.INSERT, updated_text)
+            self.chat_display.insert(tkinter.END, updated_text)
             self.chat_display.config(state=tkinter.DISABLED)
             self.input_entry.delete(0, tkinter.END)
 
