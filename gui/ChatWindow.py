@@ -11,7 +11,6 @@ class ChatWindow:
         self.x = int(main.winfo_screenwidth() / 2 - (main.winfo_reqwidth() / 2))
         self.y = int(main.winfo_screenheight() / 3 - (main.winfo_reqheight() / 2))
         self.geometry = main.geometry("400x520+{}+{}".format(self.x, self.y))
-        self.resizable = main.resizable(0, 0)
 
         self.chat_display = tkinter.Text(main, bg="black", fg="white", wrap=tkinter.WORD, state=tkinter.DISABLED,
                                          cursor='arrow', highlightcolor='black', highlightbackground='black')
