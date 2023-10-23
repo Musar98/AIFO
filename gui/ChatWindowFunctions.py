@@ -18,6 +18,7 @@ class ChatWindowFunctions:
         self.chat_window.chat_display.delete(1.0, tkinter.END)
         self.chat_window.chat_display.insert(tkinter.END, updated_text)
         self.chat_window.chat_display.config(state=tkinter.DISABLED)
+        self.chat_window.chat_display.yview_moveto(1.0)
 
     def send_message(self, event=None):
         message = self.chat_window.input_entry.get()
