@@ -1,4 +1,5 @@
 import tkinter
+from dialogflow_client import interact_with_dialogflow
 
 
 class RootConfig:
@@ -32,13 +33,31 @@ class RootConfig:
             self.chat_display.config(state=tkinter.NORMAL)
             current_text = self.chat_display.get(1.0, tkinter.END)
             if current_text.strip():
-                updated_text = current_text + "You: " + message
+                updated_text = current_text.rstrip() + "\nYou: " + message
             else:
                 updated_text = "You: " + message
             self.chat_display.delete(1.0, tkinter.END)
             self.chat_display.insert(tkinter.END, updated_text)
             self.chat_display.config(state=tkinter.DISABLED)
             self.input_entry.delete(0, tkinter.END)
+
+            self.input_entry.config(state=tkinter.DISABLED)
+
+            self.root.after(100, self.send_message_to_dialogflow, message)
+
+    def send_message_to_dialogflow(self, message):
+        res = interact_with_dialogflow('aifo-project1', "session_id", message)
+        self.update_chat_with_response(res[1])
+
+        self.input_entry.config(state=tkinter.NORMAL)
+
+    def update_chat_with_response(self, response):
+        self.chat_display.config(state=tkinter.NORMAL)
+        current_text = self.chat_display.get(1.0, tkinter.END)
+        updated_text = current_text.rstrip() + "\nBot: " + response
+        self.chat_display.delete(1.0, tkinter.END)
+        self.chat_display.insert(tkinter.END, updated_text)
+        self.chat_display.config(state=tkinter.DISABLED)
 
 
 if __name__ == "__main__":
