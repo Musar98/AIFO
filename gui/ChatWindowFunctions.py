@@ -7,8 +7,8 @@ class ChatWindowFunctions:
         self.chat_window = chat_window
 
     def send_message_to_dialogflow(self, message):
-        res = interact_with_dialogflow('aifo-project1', "session_id", message)
-        self.update_chat_with_response(res[1])
+        agent_response = interact_with_dialogflow('aifo-project1', "session_id", message)
+        self.update_chat_with_response(agent_response[1])
         self.chat_window.input_entry.config(state=tkinter.NORMAL)
 
     def update_chat_with_response(self, response):
