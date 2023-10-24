@@ -90,3 +90,5 @@ worth 40% of your final AIFo-grade. Manage your resources accordingly.
 If you do not hand-in a report by the deadline, we have to give you a grade 1.0. If you are unable to meet
 the deadline for important reason (illness, military service, etc.) the deadline can be discussed. Contact us
 as early as possible!
+
+conda env create -f environment.yml

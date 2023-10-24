@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "aifo"
+version = "0.1.0"
+description = "AIFo 2023 Graded Miniproject"
+authors = ["m@shubi.ch <m@shubi.ch>", "Musar98"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+google-cloud-dialogflow = "^2.25.0"
+argparse = "^1.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# enrty point
+[tool.poetry.scripts]
+aifo = "aifo.main:main"

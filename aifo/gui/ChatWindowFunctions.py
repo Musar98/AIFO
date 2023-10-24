@@ -1,5 +1,5 @@
 import tkinter
-from clients.dialogflow_client import interact_with_dialogflow
+from aifo.clients.dialogflow_client import interact_with_dialogflow
 
 
 class ChatWindowFunctions:

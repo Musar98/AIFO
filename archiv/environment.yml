@@ -1,5 +1,6 @@
 name: AIFOPROJECT
 channels:
+  - conda-forge
   - defaults
 dependencies:
   - google-cloud-dialogflow

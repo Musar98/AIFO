@@ -1,5 +1,5 @@
 import tkinter
-from gui.ChatWindowFunctions import ChatWindowFunctions
+from aifo.gui.ChatWindowFunctions import ChatWindowFunctions
 
 
 class ChatWindow:

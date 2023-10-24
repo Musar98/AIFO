@@ -1,7 +1,6 @@
 from google.cloud import dialogflow
-import os
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/musa/gclk/aifo-project1-dac1e93933c0.json"
+# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = API_KEY
 
 
 def interact_with_dialogflow(project_id, session_id, text_query, language_code='en'):
