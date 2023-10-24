@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 google-cloud-dialogflow = "^2.25.0"
 argparse = "^1.4.0"
+rich = "^13.6.0"
 
 
 [build-system]
