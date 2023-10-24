@@ -5,6 +5,7 @@ import os
 from aifo.gui.ChatWindow import ChatWindow
 
 API_KEY = "/home/musa/gclk/aifo-project1-dac1e93933c0.json"
+# "C:/Users/mrcls/OneDrive - schbm/schubm/private/aifo-project1-dac1e93933c0.json"
 
 
 def main():
@@ -12,7 +13,14 @@ def main():
                     prog='AI Youtube Media Downloader',
                     description='Download Youtube Media with AI',
                     epilog='Enjoy the program! :)')
-    # parser.add_argument('filename')
+    parser.add_argument("--api_key",
+                        type=str,
+                        help="Path to API key json file",
+                        default=API_KEY)
+    parser.add_argument("--cli_mode",
+                        type=bool,
+                        help="Start program in CLI mode",
+                        default=False)
     args = parser.parse_args()
     print(args)
     start_gui_mode()
