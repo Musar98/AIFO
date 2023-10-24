@@ -1,5 +1,5 @@
 name: AIFOPROJECT
 channels:
   - defaults
-  - pip:
-      - google-cloud-dialogflow
+dependencies:
+  - google-cloud-dialogflow
