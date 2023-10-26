@@ -9,7 +9,6 @@ class ChatWindowFunctions:
         self.conversation_manager = ConversationManager()
 
     def send_message_to_dialogflow(self, message):
-        #agent_response = interact_with_dialogflow('aifo-project1', "session_id", message)
         agent_response = self.conversation_manager.send_user_message(message)
         self.update_chat_with_response(agent_response[1])
         self.chat_window.input_entry.config(state=tkinter.NORMAL)
