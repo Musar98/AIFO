@@ -2,7 +2,7 @@
 name = "aifo"
 version = "0.1.0"
 description = "AIFo 2023 Graded Miniproject"
-authors = ["m@shubi.ch <m@shubi.ch>", "Musar98"]
+authors = ["Marcel Schubert <m@shubi.ch>", "Musar98 <musa.rochi98@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
@@ -12,11 +12,10 @@ argparse = "^1.4.0"
 rich = "^13.6.0"
 pytube = "^15.0.0"
 
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-# enrty point
+# entry point
 [tool.poetry.scripts]
 aifo = "aifo.main:main"
