@@ -1,10 +1,10 @@
 from google.cloud import dialogflow
-
-# os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = API_KEY
+import logging
 
 
 def interact_with_dialogflow(project_id, session_id, text_query, language_code='en'):
     # Create a session client
+    log = logging.getLogger("rich")
     session_client = dialogflow.SessionsClient()
     session = session_client.session_path(project_id, session_id)
 
@@ -13,6 +13,7 @@ def interact_with_dialogflow(project_id, session_id, text_query, language_code='
     query_input = dialogflow.QueryInput(text=text_input)
 
     response = session_client.detect_intent(request={'session': session, 'query_input': query_input})
-
+    log.info(response.query_result.parameters)
+    log.info(response)
     # Return the response from the agent
     return response.query_result.query_text, response.query_result.fulfillment_text

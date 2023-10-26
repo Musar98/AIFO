@@ -3,6 +3,7 @@ import tkinter
 import argparse
 import logging
 
+from pathlib import Path
 from rich.logging import RichHandler
 from aifo.gui.ChatWindow import ChatWindow
 from aifo.clients.youtube_client import Download
@@ -48,6 +49,9 @@ def main():
     if args.verbose:
         log.level = 10
         log.debug("enabled verbose logging")
+    
+    downloads_folder = Path.home() / "Downloads"
+    log.info(f"downloads={downloads_folder}")
 
     log.info(f"setting API key env: GOOGLE_APPLICATION_CREDENTIALS={args.api_key}")
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = args.api_key
