@@ -10,7 +10,7 @@ def on_progress(stream, chunks, bytes_remaining):
 def on_completion():
     return
 
-def download(link):
+def download(link, video=False):
     log = logging.getLogger("rich")
     log.info(f"Attemting to download {link}")
     try:
@@ -32,4 +32,8 @@ def download(link):
         log.exception(e)
     else:
         log.info("downloading video")
-        yt.streams.get_highest_resolution().download()
+        if video:
+            yt.streams.get_highest_resolution().download()
+        else:
+            yt.streams.get_audio_only().download()
+

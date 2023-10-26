@@ -35,7 +35,11 @@ class ConversationManager:
 
         if current_intent == "DownloadVideoWithURL-format":
             log.info("downloading ")
-            youtube_client.download(self.params["url"])
+            if self.params["format"] == "mp3":
+                youtube_client.download(self.params["url"])
+            else:
+                youtube_client.download(self.params["url"], True)
+
         if current_intent == "DownloadVideoWithURL-yes-cancel" or response.query_result.intent.is_fallback:
             self.reset_params()
 
