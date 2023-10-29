@@ -10,8 +10,9 @@ class ChatWindowFunctions:
 
     def send_message_to_dialogflow(self, message):
         agent_response = self.conversation_manager.send_user_message(message)
-        self.update_chat_with_response(agent_response[1])
+        self.update_chat_with_response(agent_response[0])
         self.chat_window.input_entry.config(state=tkinter.NORMAL)
+        self.conversation_manager.act_on_intent(agent_response[1])
 
     def update_chat_with_response(self, response):
         self.chat_window.chat_display.config(state=tkinter.NORMAL)

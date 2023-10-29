@@ -13,37 +13,39 @@ class ConversationManager:
         self.session = self.session_client.session_path(project_id, session_id)
         self.language_code = language_code
         self.params = dict()
+        self.current_response = None
+        self.log = logging.getLogger("rich")
 
-        
+    def act_on_intent(self, intent):
+        if intent == "DownloadVideoWithURL-yes-cancel":
+            self.reset_params()
+            return
+
+        if intent == "DownloadVideoWithURL-format":
+            if self.params['format'] is ['audio']:
+                self.log.info("starting audio download")
+                youtube_client.download(self.params["url"])
+            else:
+                self.log.info("starting video download")
+                youtube_client.download(self.params["url"], True)
+                
+    def store_parameters(self, response_arguments):
+        if response_arguments:
+            for param, value in response_arguments.items():
+                self.params[param] = value
+
+    # returns result query text, fullfillment text and current intent 
     def send_user_message(self, query):
-        log = logging.getLogger("rich")
         text_input = dialogflow.TextInput(text=query, language_code=self.language_code)
         query_input = dialogflow.QueryInput(text=text_input)
 
         response = self.session_client.detect_intent(
             session=self.session, query_input=query_input
         )
+        self.current_response = response
+        self.store_parameters(response.query_result.parameters)
 
-        current_intent = response.query_result.intent.display_name
-        log.info(f"current_intent={current_intent}")
-        
-        parameters = response.query_result.parameters
-        if parameters:
-            for param, value in parameters.items():
-                self.params[param] = value
-        log.info(self.params)
-
-        if current_intent == "DownloadVideoWithURL-format":
-            log.info("downloading ")
-            if self.params["format"] == "mp3":
-                youtube_client.download(self.params["url"])
-            else:
-                youtube_client.download(self.params["url"], True)
-
-        if current_intent == "DownloadVideoWithURL-yes-cancel" or response.query_result.intent.is_fallback:
-            self.reset_params()
-
-        return response.query_result.query_text, response.query_result.fulfillment_text
+        return response.query_result.fulfillment_text, response.query_result.intent.display_name
     
     def reset_params(self):
         self.params = dict()

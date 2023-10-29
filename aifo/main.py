@@ -71,7 +71,6 @@ def start_gui_mode():
 
 
 def start_cli_mode():
-    # TODO: implement cli mode
     return
 
 
