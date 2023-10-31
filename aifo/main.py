@@ -33,12 +33,6 @@ def main():
         help="Path to API key json file"
     )
     parser.add_argument(
-        "--cli_mode",
-        "-c",
-        action="store_true",
-        help="Start program in CLI mode"
-    )
-    parser.add_argument(
         "--verbose",
         "-v",
         action="store_true",
@@ -55,24 +49,10 @@ def main():
 
     log.info(f"setting API key env: GOOGLE_APPLICATION_CREDENTIALS={args.api_key}")
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = args.api_key
-    log.info(f"starting mode: cli_mode={args.cli_mode}")
 
-    if args.cli_mode:
-        start_cli_mode
-    else:
-        start_gui_mode()
-        return
-
-
-def start_gui_mode():
     root = tkinter.Tk()
     chat_window = ChatWindow(root)
     root.mainloop()
-
-
-def start_cli_mode():
-    return
-
 
 if __name__ == "__main__":
     main()
