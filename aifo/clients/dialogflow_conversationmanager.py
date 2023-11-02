@@ -2,6 +2,7 @@ from google.cloud import dialogflow
 from aifo.clients import youtube_client
 import logging
 
+
 class ConversationManager:
     def __init__(self, project_id='aifo-project1', session_id='session_id', language_code='en'):
         log = logging.getLogger("rich")
@@ -28,7 +29,7 @@ class ConversationManager:
             else:
                 self.log.info("starting video download")
                 youtube_client.download(self.params["url"], True)
-                
+
     def store_parameters(self, response_arguments):
         if response_arguments:
             for param, value in response_arguments.items():
@@ -46,6 +47,6 @@ class ConversationManager:
         self.store_parameters(response.query_result.parameters)
 
         return response.query_result.fulfillment_text, response.query_result.intent.display_name
-    
+
     def reset_params(self):
         self.params = dict()

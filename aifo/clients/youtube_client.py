@@ -1,14 +1,18 @@
 from pytube import YouTube
 from pytube.exceptions import VideoUnavailable
 import logging
+
+
 # https://pytube.io/en/latest/
 
 
 def on_progress(stream, chunks, bytes_remaining):
     return
 
+
 def on_completion():
     return
+
 
 def download(link, video=False):
     log = logging.getLogger("rich")
@@ -36,4 +40,3 @@ def download(link, video=False):
             yt.streams.get_highest_resolution().download()
         else:
             yt.streams.get_audio_only().download()
-

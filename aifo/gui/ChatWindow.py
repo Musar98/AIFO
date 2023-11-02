@@ -22,7 +22,7 @@ class ChatWindow:
         self.input_entry = tkinter.Entry(input_frame, bg="darkgrey", highlightcolor='grey')
         self.input_entry.pack(side=tkinter.LEFT, fill=tkinter.X, expand=True)
 
-        send_button = tkinter.Button(input_frame, text="Send", command=self.chat_window_functions.send_message)
+        send_button = tkinter.Button(input_frame, text="Send", command=self.chat_window_functions.update_chat_window)
         send_button.pack(side=tkinter.RIGHT)
 
-        self.input_entry.bind("<Return>", self.chat_window_functions.send_message)
+        self.input_entry.bind("<Return>", self.chat_window_functions.update_chat_window)

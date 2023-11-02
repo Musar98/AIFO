@@ -1,5 +1,4 @@
 import tkinter
-from aifo.clients.dialogflow_client import interact_with_dialogflow
 from aifo.clients.dialogflow_conversationmanager import ConversationManager
 
 
@@ -23,7 +22,7 @@ class ChatWindowFunctions:
         self.chat_window.chat_display.config(state=tkinter.DISABLED)
         self.chat_window.chat_display.yview_moveto(1.0)
 
-    def send_message(self, event=None):
+    def update_chat_window(self, event=None):
         message = self.chat_window.input_entry.get()
         if message:
             self.chat_window.chat_display.config(state=tkinter.NORMAL)
